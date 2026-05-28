@@ -40,6 +40,26 @@ a:hover {
   color: cyan;
 }
 
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 2rem;
+}
+
+nav a {
+  display: inline-block;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Thumbnail Images */
 .thumbnail {
   max-width: 40%;
