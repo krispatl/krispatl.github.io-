@@ -41,10 +41,12 @@
     .content {
       position: relative;
       z-index: 1;
-      width: min(680px, calc(100% - 48px));
-      padding: 28px 0 40px;
+      width: calc(100% - 48px);
+      min-height: calc(100vh - 68px);
+      padding: 28px 24px 40px;
       margin: 0;
       color: white;
+      box-sizing: border-box;
     }
 
     h1 {
@@ -116,8 +118,9 @@
 
     @media (max-width: 700px) {
       .content {
-        width: calc(100% - 32px);
-        padding-top: 20px;
+        width: 100%;
+        min-height: calc(100vh - 52px);
+        padding: 20px 16px 32px;
       }
 
       .intro,
