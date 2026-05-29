@@ -5,87 +5,58 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="description" content="Video documentation, experimental moving image, and digital ephemera from Kris Pilcher’s archive.">
   <link rel="stylesheet" href="/style.css">
-  <style>
-    html, body {
-      height: auto;
-      min-height: 100%;
-      overflow-y: auto;
-      font-family: sans-serif;
-    }
-    .content {
-      position: relative;
-      z-index: 1;
-      padding: 2em;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    nav {
-      margin-bottom: 2em;
-    }
-    iframe {
-      margin-top: 1em;
-      max-width: 100%;
-      height: auto;
-    }
-    .video-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5em;
-      justify-content: center;
-    }
-    .video-container iframe {
-      flex: 1 1 45%;
-      min-width: 300px;
-    }
-    h1, h2 {
-      margin-top: 2em;
-    }
-  </style>
 </head>
-
-<body>
-  <div class="content">
-    <nav>
-      
-      <a href="/XR.html">XR// </a>
-      <a href="/images.html">IRL// </a>
-       <a href="/blog.html">Research Blog// </a>
-      <a href="/Dreams.html">Dreams// </a>
-      <a href="/wishes.html">Wishes// </a>
-      <a href="/video.html">Video// </a>
-      <a href="/curator.html">Curatorial// </a>
-      <a href="/commercial.html">Commercial// </a>
-      <a href="/About.html" target="_blank">About me</a>
+<body class="page-shell">
+  <div class="page-content">
+    <nav class="page-nav" aria-label="Primary">
+      <a href="/index.html">Home //</a>
+      <a href="/XR.html">XR //</a>
+      <a href="/images.html">IRL //</a>
+      <a href="/video.html" aria-current="page">Video //</a>
+      <a href="/curator.html">Curatorial //</a>
+      <a href="/commercial.html">Commercial //</a>
+      <a href="/blog.html">Research //</a>
+      <a href="/Dreams.html">Dreams //</a>
+      <a href="/wishes.html">Wishes //</a>
+      <a href="/About.html">About //</a>
     </nav>
 
-    <h1>Video Documentation & Digital Ephemera</h1>
-    <p>
-      A selection of interactive installations, performance systems, and experimental documentation from my creative archive. These are not just videos—these are time-bound portals into the strange architectures I build.
-    </p>
+    <header class="page-hero">
+      <p class="page-kicker">Video archive</p>
+      <h1>Documentation & digital ephemera</h1>
+      <p class="lede">
+        A selection of moving-image traces from installations, performances, XR systems, and experiments. Not a clean filmography — more a field notebook of portals, tests, spells, and aftermath.
+      </p>
+    </header>
 
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/yJ0gFleorOg?si=HrmbTkdNClfRzDJf" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/EvRW1u9io8g" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/YDorEOUHeeU" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/DgZSAkzNu2M" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/Sr6eVqXuUNU" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/xf_2Nt809vQ" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/7V2kc9jrQII" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/Abbvtvs5PiU" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/QmxQt095WRA" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/gHkTncJuMl0" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/5vkwzF-lpic" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/2wBo6Gv1ip8" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/63fAQ7Tavz4" frameborder="0" allowfullscreen></iframe>
-    </div>
+    <section class="project-card">
+      <h2>Archive reel</h2>
+      <div class="video-grid">
+        <div class="embed"><iframe src="https://www.youtube.com/embed/yJ0gFleorOg?si=HrmbTkdNClfRzDJf" title="Archive video 1" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/EvRW1u9io8g" title="Archive video 2" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/YDorEOUHeeU" title="Archive video 3" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/DgZSAkzNu2M" title="Archive video 4" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/Sr6eVqXuUNU" title="Archive video 5" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/xf_2Nt809vQ" title="Archive video 6" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/7V2kc9jrQII" title="Archive video 7" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/Abbvtvs5PiU" title="Archive video 8" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/QmxQt095WRA" title="Archive video 9" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/gHkTncJuMl0" title="Archive video 10" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/5vkwzF-lpic" title="Archive video 11" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/2wBo6Gv1ip8" title="Archive video 12" allowfullscreen></iframe></div>
+        <div class="embed"><iframe src="https://www.youtube.com/embed/63fAQ7Tavz4" title="Archive video 13" allowfullscreen></iframe></div>
+      </div>
+    </section>
 
-    <h2>A moment in motion: Believe at Downtown Players Club</h2>
-    <p>
-      This is one of those projects that lives in your bones. Filmed in the thick of our experimental phase at DPC, this music video with <strong>Believe</strong> is equal parts spell and memory.
-    </p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/PUbGh6SztxY" frameborder="0" allowfullscreen></iframe>
+    <section class="project-card">
+      <h2>Believe at Downtown Players Club</h2>
+      <p>
+        One of those pieces that stays in the bones — a music video from an especially experimental phase at DPC, hovering somewhere between spell, scene document, and memory object.
+      </p>
+      <div class="embed"><iframe src="https://www.youtube.com/embed/PUbGh6SztxY" title="Believe at Downtown Players Club" allowfullscreen></iframe></div>
+    </section>
   </div>
 </body>
 </html>
