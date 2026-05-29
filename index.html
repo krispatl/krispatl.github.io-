@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Kris Pilcher — Artist, XR Creator, Technologist</title>
+  <title>kris pilcher</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio of Kris Pilcher: XR, installation, video, curatorial work, research, and immersive storytelling.">
+  <meta name="description" content="Kris Pilcher — artist, technologist, XR creator.">
   <link rel="stylesheet" href="/style.css">
+
   <style>
     html, body {
       margin: 0;
+      padding: 0;
       min-height: 100%;
-      background: #050505;
+      background: #000;
     }
 
-    body.home {
-      color: #f4f1ea;
-      font-family: "Avenir Next", "Avenir", sans-serif;
+    body {
+      color: #fff;
+      font-family: 'Courier New', monospace;
       overflow-x: hidden;
     }
 
-    .home #myVideo {
+    #myVideo {
       position: fixed;
       inset: 0;
       width: 100%;
@@ -29,359 +31,145 @@
       z-index: -2;
     }
 
-    .video-overlay {
+    .overlay {
       position: fixed;
       inset: 0;
       z-index: -1;
-      background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.78)),
-        radial-gradient(circle at top left, rgba(30, 145, 255, 0.18), transparent 35%),
-        radial-gradient(circle at top right, rgba(231, 0, 212, 0.16), transparent 28%);
+      background: rgba(0, 0, 0, 0.28);
     }
 
-    .page-shell {
+    .content {
       position: relative;
       z-index: 1;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 24px 56px;
+      width: min(680px, calc(100% - 48px));
+      padding: 28px 0 40px;
+      margin: 0;
+      color: white;
     }
 
-    .topnav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 18px;
-      align-items: center;
-      margin-bottom: 56px;
-      padding: 14px 18px;
-      background: rgba(10, 10, 10, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 18px;
-      backdrop-filter: blur(8px);
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 7vw, 4.2rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
     }
 
-    .topnav a {
-      color: #f4f1ea;
-      text-decoration: none;
-      font-size: 0.96rem;
-      letter-spacing: 0.04em;
+    .intro {
+      max-width: 34rem;
+      margin: 0 0 26px;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.9);
     }
 
-    .topnav a:hover {
-      color: #73f7ff;
+    .nav-block,
+    .note-block {
+      margin-top: 20px;
     }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
-      gap: 28px;
-      align-items: end;
-      min-height: 58vh;
-      margin-bottom: 56px;
-    }
-
-    .hero-copy h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.8rem, 8vw, 6rem);
-      line-height: 0.92;
-      letter-spacing: 0.04em;
-    }
-
-    .hero-copy p {
-      max-width: 680px;
-      margin: 0 0 16px;
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: rgba(244, 241, 234, 0.9);
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      color: #73f7ff;
+    .nav-label,
+    .note-label {
+      margin-bottom: 10px;
+      color: #00ffff;
+      font-size: 0.82rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-size: 0.8rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .button,
-    .button-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .button {
-      background: linear-gradient(135deg, #73f7ff, #d54cff);
-      color: #111;
-      box-shadow: 0 12px 40px rgba(115, 247, 255, 0.18);
-    }
-
-    .button-secondary {
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #f4f1ea;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .button:hover,
-    .button-secondary:hover {
-      transform: translateY(-1px);
-    }
-
-    .hero-panel,
-    .section-panel,
-    .featured-card {
-      background: rgba(8, 8, 8, 0.48);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
-    }
-
-    .hero-panel {
-      padding: 24px;
-    }
-
-    .hero-panel h2 {
-      margin-top: 0;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #73f7ff;
-    }
-
-    .hero-panel ul {
-      padding-left: 18px;
-      margin-bottom: 0;
-      line-height: 1.7;
-      color: rgba(244, 241, 234, 0.88);
-    }
-
-    .section {
-      margin-bottom: 28px;
-    }
-
-    .section-panel {
-      padding: 28px;
-    }
-
-    .section h2 {
-      margin: 0 0 10px;
-      font-size: 1.7rem;
-    }
-
-    .section-intro {
-      margin: 0 0 24px;
-      max-width: 760px;
-      line-height: 1.7;
-      color: rgba(244, 241, 234, 0.86);
-    }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .featured-card {
+    .home-links a,
+    .secondary-links a {
       display: block;
-      padding: 22px;
+      width: fit-content;
+      margin: 0.3rem 0;
+      color: white;
       text-decoration: none;
-      color: #f4f1ea;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
-    .featured-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(115, 247, 255, 0.4);
-      background: rgba(18, 18, 18, 0.58);
+    .home-links a:hover,
+    .secondary-links a:hover {
+      color: #00ffff;
+      transform: translateX(3px);
     }
 
-    .featured-card span {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #73f7ff;
+    .home-links a {
+      font-size: 1.02rem;
+      letter-spacing: 0.04em;
     }
 
-    .featured-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.25rem;
+    .secondary-links {
+      margin-top: 18px;
     }
 
-    .featured-card p {
+    .secondary-links a {
+      font-size: 0.94rem;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .note-block p {
+      max-width: 34rem;
       margin: 0;
-      line-height: 1.65;
-      color: rgba(244, 241, 234, 0.84);
-    }
-
-    .two-column {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .list-clean {
-      margin: 0;
-      padding-left: 18px;
-      line-height: 1.8;
-    }
-
-    .small-note {
-      color: rgba(244, 241, 234, 0.72);
-      font-size: 0.96rem;
+      color: rgba(255,255,255,0.82);
       line-height: 1.7;
+      font-size: 0.95rem;
     }
 
-    .footer-note {
-      padding: 20px 4px 0;
-      color: rgba(244, 241, 234, 0.68);
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero,
-      .featured-grid,
-      .two-column {
-        grid-template-columns: 1fr;
+    @media (max-width: 700px) {
+      .content {
+        width: calc(100% - 32px);
+        padding-top: 20px;
       }
 
-      .page-shell {
-        padding: 18px 16px 40px;
-      }
-
-      .topnav {
-        margin-bottom: 32px;
-      }
-
-      .hero {
-        min-height: auto;
+      .intro,
+      .note-block p {
+        max-width: none;
       }
     }
   </style>
 </head>
-<body class="home">
-  <video autoplay muted loop playsinline id="myVideo" aria-hidden="true">
+<body>
+
+  <video autoplay muted loop playsinline id="myVideo">
     <source src="glitch-assets/webfx2.mp4" type="video/mp4">
   </video>
-  <div class="video-overlay"></div>
+  <div class="overlay"></div>
 
-  <main class="page-shell">
-    <nav class="topnav" aria-label="Primary navigation">
-      <a href="/index.html">Home</a>
-      <a href="/XR.html">XR</a>
-      <a href="/images.html">Installations</a>
-      <a href="/video.html">Video</a>
-      <a href="/curator.html">Curatorial</a>
-      <a href="/commercial.html">Commercial</a>
-      <a href="/blog.html">Research Blog</a>
-      <a href="/Dreams.html">Dreams</a>
-      <a href="/wishes.html">Wishes</a>
-      <a href="/About.html">About</a>
-    </nav>
+  <div class="content">
+    <h1>KRIS PILCHER</h1>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">Artist · XR Creator · Technologist</span>
-        <h1>KRIS PILCHER</h1>
-        <p>
-          I build immersive artworks, speculative interfaces, and strange public-facing systems across XR,
-          projection, moving image, and emergent technology.
-        </p>
-        <p>
-          This site is a map of those worlds: installations, virtual experiences, research fragments,
-          curatorial experiments, and collaborations that live somewhere between ritual, machine, and cinema.
-        </p>
-        <div class="hero-actions">
-          <a class="button" href="/XR.html">Enter the XR work</a>
-          <a class="button-secondary" href="/About.html">Read the artist statement</a>
-          <a class="button-secondary" href="mailto:nemartco@gmail.com">Get in touch</a>
-        </div>
+    <p class="intro">
+      artist // technologist // xr creator
+      <br><br>
+      experiments in altered reality, moving image, projection, memory systems, ritual interfaces, dreams, and other transmissions.
+    </p>
+
+    <div class="nav-block">
+      <div class="nav-label">enter</div>
+      <div class="home-links">
+        <a href="/XR.html">XR //</a>
+        <a href="/images.html">IRL //</a>
+        <a href="/video.html">Video //</a>
+        <a href="/curator.html">Curatorial //</a>
+        <a href="/commercial.html">Commercial //</a>
+        <a href="/blog.html">Research Blog //</a>
+        <a href="/Dreams.html">Dreams //</a>
+        <a href="/wishes.html">Wishes //</a>
+        <a href="/About.html">About //</a>
       </div>
+    </div>
 
-      <aside class="hero-panel">
-        <h2>Selected terrain</h2>
-        <ul>
-          <li>XR systems, immersive storytelling, and mixed reality prototypes</li>
-          <li>Installation art, projection mapping, and public-space interventions</li>
-          <li>AI, posthuman ritual, memory systems, and speculative media research</li>
-          <li>Creative technology work for institutions, brands, and collaborators</li>
-        </ul>
-      </aside>
-    </section>
+    <div class="secondary-links">
+      <a href="mailto:nemartco@gmail.com">nemartco@gmail.com</a>
+      <a href="https://drive.google.com/file/d/1NuRejqf2RLRPHFQHIRfyNw4znq_3u-Q3/view?usp=sharing" target="_blank" rel="noopener noreferrer">CV</a>
+    </div>
 
-    <section class="section">
-      <div class="section-panel">
-        <h2>Featured pathways</h2>
-        <p class="section-intro">
-          If you're new here, start with one of these. They cover the main branches of the practice without making you dig through the archive first.
-        </p>
-        <div class="featured-grid">
-          <a class="featured-card" href="/XR.html">
-            <span>XR</span>
-            <h3>Extended Reality</h3>
-            <p>Immersive art, mixed reality systems, virtual environments, and experiments in embodied interface design.</p>
-          </a>
-          <a class="featured-card" href="/images.html">
-            <span>IRL</span>
-            <h3>Installations & Projection</h3>
-            <p>Spatial storytelling through light, architecture, performance, speculative monumentality, and public intervention.</p>
-          </a>
-          <a class="featured-card" href="/video.html">
-            <span>Moving image</span>
-            <h3>Video Archive</h3>
-            <p>Documentation, digital ephemera, performance remnants, and moving-image portals from across the practice.</p>
-          </a>
-          <a class="featured-card" href="/About.html">
-            <span>Context</span>
-            <h3>About, Press & Contact</h3>
-            <p>Artist statement, selected press, lectures, CV, and the cleanest way to understand the larger arc of the work.</p>
-          </a>
-        </div>
-      </div>
-    </section>
+    <div class="note-block">
+      <div class="note-label">signal</div>
+      <p>
+        this is an archive of immersive works, installations, speculative tools, fragments, and portals.
+      </p>
+    </div>
+  </div>
 
-    <section class="section two-column">
-      <div class="section-panel">
-        <h2>Recent anchors</h2>
-        <ul class="list-clean">
-          <li><strong>Common-AI-Verse</strong> — installation advisor role on a co-creative AI metaverse exhibition at CCCB.</li>
-          <li><strong>Writer's Block</strong> — mixed reality hip hop tribute using realtime body tracking and passthrough interaction.</li>
-          <li><strong>Memento Mori</strong> — AR memorial system developed at MIT Reality Hack.</li>
-          <li><strong>Under Armour – Coaches Armoury</strong> — Unreal-powered performance platform for athlete engagement.</li>
-        </ul>
-      </div>
-
-      <div class="section-panel">
-        <h2>For curators, collaborators, and commissioners</h2>
-        <p class="small-note">
-          Looking for exhibitions, speaking, creative technology consulting, immersive production, or commissioned work?
-          The fastest route is the <a href="/About.html">About page</a> or a direct email to
-          <a href="mailto:nemartco@gmail.com">nemartco@gmail.com</a>.
-        </p>
-        <p class="small-note">
-          You can also browse <a href="/commercial.html">commercial work</a>, <a href="/curator.html">curatorial projects</a>,
-          and the <a href="/blog.html">research blog</a> depending on what kind of conversation you're here for.
-        </p>
-      </div>
-    </section>
-
-    <p class="footer-note">Based in immersive practice, speculative systems, and the borderlands between art and technology.</p>
-  </main>
 </body>
 </html>
