@@ -488,6 +488,68 @@ body.page-shell {
   display: block;
 }
 
+.clickable-image {
+  cursor: zoom-in;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clickable-image:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+}
+
+.site-lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+}
+
+.site-lightbox.is-open {
+  display: flex;
+}
+
+.site-lightbox-image {
+  max-width: min(92vw, 1600px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.site-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 2.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.site-lightbox-close:hover {
+  color: #00ffff;
+}
+
+.clickable-image:focus-visible,
+.site-lightbox-close:focus-visible {
+  outline: 2px solid #00ffff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .site-lightbox {
+    padding: 18px;
+  }
+}
+
 .page-content .thumbnail {
   width: min(100%, 320px);
 }
