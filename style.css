@@ -245,3 +245,223 @@ svg {
   margin: 0;
   background: white;
 }
+
+/* Interior page system */
+body.page-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(0, 255, 255, 0.08), transparent 36%),
+    linear-gradient(180deg, #060606 0%, #000 42%, #050505 100%);
+  color: #e6e6e6;
+  font-family: "Avenir Next", "Avenir", "Helvetica Neue", sans-serif;
+}
+
+.body-no-scroll {
+  overflow: hidden;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  width: min(940px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 32px 0 72px;
+  box-sizing: border-box;
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin: 0 0 2.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.page-nav a {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.page-nav a:hover,
+.page-nav a[aria-current="page"] {
+  color: #00ffff;
+}
+
+.page-kicker {
+  margin: 0 0 0.8rem;
+  color: #00ffff;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-hero {
+  margin-bottom: 3rem;
+}
+
+.page-hero h1 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  line-height: 0.98;
+  letter-spacing: 0.03em;
+  color: #fff;
+}
+
+.page-hero .lede,
+.lede {
+  max-width: 46rem;
+  margin: 0;
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.page-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.page-grid.two-up {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card,
+.info-card {
+  padding: 1.35rem 1.4rem 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  backdrop-filter: blur(4px);
+}
+
+.project-card + .project-card,
+.content section + section {
+  margin-top: 1.4rem;
+}
+
+.project-card h2,
+.project-card h3,
+.info-card h2,
+.info-card h3 {
+  margin: 0 0 0.7rem;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.project-card p,
+.info-card p,
+.content li {
+  line-height: 1.75;
+}
+
+.project-meta {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+.button-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0.72rem 1rem;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  border-radius: 999px;
+  color: #fff;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.button-link:hover {
+  transform: translateY(-1px);
+  border-color: #00ffff;
+  color: #00ffff;
+}
+
+.embed,
+.embed iframe {
+  width: 100%;
+  max-width: 100%;
+}
+
+.embed iframe {
+  min-height: 315px;
+  border: 0;
+  border-radius: 14px;
+}
+
+.media-stack,
+.link-list,
+.press-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.press-list {
+  padding-left: 1.2rem;
+}
+
+.press-list li::marker {
+  color: #00ffff;
+}
+
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.1rem;
+  margin-top: 0.9rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.video-grid .embed {
+  margin: 0;
+}
+
+.page-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+.page-content .thumbnail {
+  width: min(100%, 320px);
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.8fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 800px) {
+  .page-content {
+    width: min(100%, calc(100% - 28px));
+    padding: 20px 0 52px;
+  }
+
+  .page-grid.two-up,
+  .video-grid,
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+
+  .embed iframe {
+    min-height: 240px;
+  }
+
+  .project-card,
+  .info-card {
+    padding: 1.1rem 1rem 1.2rem;
+    border-radius: 16px;
+  }
+}
