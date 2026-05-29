@@ -60,6 +60,51 @@ img {
   height: auto;
 }
 
+.image-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.two-up-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.three-up-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.four-up-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.media-stack {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.two-up-media {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .three-up-grid,
+  .four-up-grid,
+  .two-up-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .two-up-grid,
+  .three-up-grid,
+  .four-up-grid,
+  .two-up-media {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Thumbnail Images */
 .thumbnail {
   max-width: 40%;
