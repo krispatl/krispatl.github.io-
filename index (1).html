@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>kris pilcher</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kris Pilcher — artist, technologist, XR creator.">
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: #05050d;
+    }
+
+    body {
+      color: #f0efea;
+      font-family: 'Space Grotesk', 'Avenir Next', sans-serif;
+      overflow-x: hidden;
+    }
+
+    #myVideo {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(5,5,13,0.82) 0%, rgba(5,5,13,0.55) 46%, rgba(5,5,13,0.2) 100%),
+        radial-gradient(ellipse 90% 70% at 8% 100%, rgba(5,5,13,0.6), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* scanlines over the video */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 0, 0, 0.14) 3px,
+        rgba(0, 0, 0, 0.14) 4px
+      );
+      mix-blend-mode: multiply;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: min(860px, calc(100% - 48px));
+      min-height: calc(100vh - 68px);
+      padding: 34px 24px 48px;
+      margin: 0;
+      color: #f0efea;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 26px;
+      padding-bottom: 0.7rem;
+      margin-bottom: clamp(2rem, 7vh, 4.5rem);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240,239,234,0.55);
+      border-bottom: 1px solid rgba(240,239,234,0.16);
+    }
+
+    .top-strip b { font-weight: 400; color: #64f4e0; }
+    .top-strip .amber b { color: #ffb454; }
+
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+    .top-strip .dot { color: #ff3eb5; animation: blink 1.6s ease-in-out infinite; }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.8rem, 10vw, 6.4rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-shadow:
+        3px 0 0 rgba(255, 62, 181, 0.4),
+        -3px 0 0 rgba(100, 244, 224, 0.4);
+    }
+
+    .intro {
+      max-width: 34rem;
+      margin: 0 0 clamp(24px, 5vh, 44px);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(240,239,234,0.86);
+      border-left: 1px solid #ff3eb5;
+      padding-left: 18px;
+    }
+
+    .intro .roles {
+      display: block;
+      margin-bottom: 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64f4e0;
+    }
+
+    .nav-block,
+    .note-block {
+      margin-top: 8px;
+    }
+
+    .nav-label,
+    .note-label {
+      margin-bottom: 12px;
+      color: #ffb454;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .nav-label::before,
+    .note-label::before {
+      content: '/// ';
+      color: #ff3eb5;
+      letter-spacing: 0;
+    }
+
+    .home-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 2px 22px;
+      max-width: 46rem;
+    }
+
+    .home-links a {
+      position: relative;
+      display: block;
+      padding: 0.42rem 0 0.42rem 22px;
+      color: rgba(240,239,234,0.9);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(240,239,234,0.1);
+      transition: color 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease;
+    }
+
+    .home-links a::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: rgba(240,239,234,0.3);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .home-links a:hover {
+      color: #64f4e0;
+      border-bottom-color: rgba(100,244,224,0.5);
+      padding-left: 28px;
+      text-shadow: 0 0 16px rgba(100,244,224,0.5);
+    }
+
+    .home-links a:hover::before {
+      color: #ff3eb5;
+      transform: translateX(4px);
+    }
+
+    .secondary-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 28px;
+      margin-top: 26px;
+    }
+
+    .secondary-links a {
+      color: rgba(240,239,234,0.62);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(240,239,234,0.18);
+      padding-bottom: 1px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .secondary-links a:hover {
+      color: #ff3eb5;
+      border-bottom-color: #ff3eb5;
+    }
+
+    .note-block {
+      margin-top: auto;
+      padding-top: clamp(28px, 6vh, 56px);
+    }
+
+    .note-block p {
+      max-width: 34rem;
+      margin: 0;
+      color: rgba(240,239,234,0.6);
+      line-height: 1.75;
+      font-size: 0.88rem;
+      font-weight: 300;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #64f4e0;
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .top-strip .dot { animation: none; }
+    }
+
+    @media (max-width: 700px) {
+      .content {
+        width: 100%;
+        min-height: calc(100vh - 52px);
+        padding: 22px 16px 32px;
+      }
+
+      .intro,
+      .note-block p {
+        max-width: none;
+      }
+
+      .home-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline id="myVideo">
+    <source src="glitch-assets/webfx2.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="content">
+    <div class="top-strip" aria-hidden="true">
+      <span><b>KP//ARCHIVE</b></span>
+      <span>SITE <b>41.3874°N 2.1686°E</b></span>
+      <span class="amber">JD <b id="jd">—</b></span>
+      <span><span class="dot">●</span> SIGNAL <b style="color:#ff3eb5">LOCKED</b></span>
+    </div>
+
+    <h1 id="siteTitle">KRIS PILCHER</h1>
+
+    <p class="intro">
+      <span class="roles">artist // technologist // xr creator</span>
+      experiments in altered reality, moving image, projection, memory systems, dreams, and other transmissions.
+    </p>
+
+    <div class="nav-block">
+      <div class="nav-label">enter</div>
+      <div class="home-links">
+        <a href="/XR.html">XR //</a>
+        <a href="/images.html">IRL //</a>
+        <a href="/video.html">Video //</a>
+        <a href="/curator.html">Curatorial //</a>
+        <a href="/commercial.html">Commercial //</a>
+        <a href="/blog.html">Research Blog //</a>
+        <a href="/Dreams.html">Dreams //</a>
+        <a href="/wishes.html">Wishes //</a>
+        <a href="/About.html">About //</a>
+      </div>
+    </div>
+
+    <div class="secondary-links">
+      <a href="mailto:nemartco@gmail.com">nemartco@gmail.com</a>
+      <a href="https://drive.google.com/file/d/1NuRejqf2RLRPHFQHIRfyNw4znq_3u-Q3/view?usp=sharing" target="_blank" rel="noopener noreferrer">CV</a>
+    </div>
+
+    <div class="note-block">
+      <div class="note-label">signal</div>
+      <p>
+        this is an archive of immersive works, installations, speculative tools, fragments, and experiments.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var jdEl = document.getElementById('jd');
+      function tick() {
+        jdEl.textContent = (Date.now() / 86400000 + 2440587.5).toFixed(5);
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var h1 = document.getElementById('siteTitle');
+      if (h1 && !reduced) {
+        var finalText = h1.textContent;
+        var glyphs = '█▓▒░<>/\\|=+*#@%&$?!01';
+        var frame = 0;
+        var total = 30;
+        h1.setAttribute('aria-label', finalText);
+        function scramble() {
+          frame++;
+          var settled = Math.floor((frame / total) * finalText.length);
+          var out = '';
+          for (var i = 0; i < finalText.length; i++) {
+            var ch = finalText[i];
+            out += (i < settled || ch === ' ') ? ch : glyphs[Math.floor(Math.random() * glyphs.length)];
+          }
+          h1.textContent = out;
+          if (settled < finalText.length) requestAnimationFrame(scramble);
+          else h1.textContent = finalText;
+        }
+        requestAnimationFrame(scramble);
+      }
+    })();
+  </script>
+  <script src="/site-effects.js"></script>
+</body>
+</html>
