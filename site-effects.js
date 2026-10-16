@@ -1,5 +1,5 @@
 /* KRIS PILCHER — transmission archive effects
-   Injected instrumentation: film grain, live telemetry strip,
+   Injected instrumentation: film grain,
    decode-in headlines, scroll reveal, cursor field.
    All motion respects prefers-reduced-motion. */
 
@@ -11,30 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   grain.className = 'grain-overlay';
   grain.setAttribute('aria-hidden', 'true');
   document.body.appendChild(grain);
-
-  /* ---------- transmission strip ---------- */
-  const nav = document.querySelector('.page-nav');
-  if (nav) {
-    const strip = document.createElement('div');
-    strip.className = 'tx-strip';
-    strip.setAttribute('aria-hidden', 'true');
-    strip.innerHTML = [
-      '<span><b>KP//ARCHIVE</b></span>',
-      '<span>REF <b>ECLIPTIC J2000.0</b></span>',
-      '<span>SITE <b>41.3874°N 2.1686°E</b></span>',
-      '<span class="tx-live">JD <b class="tx-jd">—</b></span>',
-      '<span class="tx-sig"><span class="tx-dot">●</span> SIGNAL <b>LOCKED</b></span>'
-    ].join('');
-    nav.insertAdjacentElement('afterend', strip);
-
-    const jdEl = strip.querySelector('.tx-jd');
-    const tick = () => {
-      const jd = Date.now() / 86400000 + 2440587.5;
-      jdEl.textContent = jd.toFixed(5);
-    };
-    tick();
-    setInterval(tick, 1000);
-  }
 
   /* ---------- decode-in headline ---------- */
   const h1 = document.querySelector('.page-hero h1');

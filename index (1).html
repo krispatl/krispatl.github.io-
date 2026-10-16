@@ -260,13 +260,6 @@
   <div class="scanlines" aria-hidden="true"></div>
 
   <div class="content">
-    <div class="top-strip" aria-hidden="true">
-      <span><b>KP//ARCHIVE</b></span>
-      <span>SITE <b>41.3874°N 2.1686°E</b></span>
-      <span class="amber">JD <b id="jd">—</b></span>
-      <span><span class="dot">●</span> SIGNAL <b style="color:#ff3eb5">LOCKED</b></span>
-    </div>
-
     <h1 id="siteTitle">KRIS PILCHER</h1>
 
     <p class="intro">
@@ -304,13 +297,6 @@
 
   <script>
     (function () {
-      var jdEl = document.getElementById('jd');
-      function tick() {
-        jdEl.textContent = (Date.now() / 86400000 + 2440587.5).toFixed(5);
-      }
-      tick();
-      setInterval(tick, 1000);
-
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var h1 = document.getElementById('siteTitle');
       if (h1 && !reduced) {
