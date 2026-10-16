@@ -42,22 +42,6 @@
       pointer-events: none;
     }
 
-    /* scanlines over the video */
-    .scanlines {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(0, 0, 0, 0.14) 3px,
-        rgba(0, 0, 0, 0.14) 4px
-      );
-      mix-blend-mode: multiply;
-    }
-
     .content {
       position: relative;
       z-index: 2;
@@ -71,26 +55,6 @@
       flex-direction: column;
     }
 
-    .top-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 26px;
-      padding-bottom: 0.7rem;
-      margin-bottom: clamp(2rem, 7vh, 4.5rem);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.64rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(240,239,234,0.55);
-      border-bottom: 1px solid rgba(240,239,234,0.16);
-    }
-
-    .top-strip b { font-weight: 400; color: #64f4e0; }
-    .top-strip .amber b { color: #ffb454; }
-
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
-    .top-strip .dot { color: #ff3eb5; animation: blink 1.6s ease-in-out infinite; }
-
     h1 {
       margin: 0 0 18px;
       font-size: clamp(2.8rem, 10vw, 6.4rem);
@@ -98,9 +62,7 @@
       line-height: 0.92;
       letter-spacing: -0.03em;
       text-transform: uppercase;
-      text-shadow:
-        3px 0 0 rgba(255, 62, 181, 0.4),
-        -3px 0 0 rgba(100, 244, 224, 0.4);
+      text-shadow: none;
     }
 
     .intro {
@@ -124,27 +86,7 @@
       color: #64f4e0;
     }
 
-    .nav-block,
-    .note-block {
-      margin-top: 8px;
-    }
-
-    .nav-label,
-    .note-label {
-      margin-bottom: 12px;
-      color: #ffb454;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    .nav-label::before,
-    .note-label::before {
-      content: '/// ';
-      color: #ff3eb5;
-      letter-spacing: 0;
-    }
+    .nav-block { margin-top: 8px; }
 
     .home-links {
       display: grid;
@@ -156,7 +98,7 @@
     .home-links a {
       position: relative;
       display: block;
-      padding: 0.42rem 0 0.42rem 22px;
+      padding: 0.42rem 0;
       color: rgba(240,239,234,0.9);
       font-family: 'Space Mono', monospace;
       font-size: 0.92rem;
@@ -167,24 +109,11 @@
       transition: color 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease;
     }
 
-    .home-links a::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: rgba(240,239,234,0.3);
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
     .home-links a:hover {
       color: #64f4e0;
       border-bottom-color: rgba(100,244,224,0.5);
-      padding-left: 28px;
-      text-shadow: 0 0 16px rgba(100,244,224,0.5);
-    }
-
-    .home-links a:hover::before {
-      color: #ff3eb5;
-      transform: translateX(4px);
+      padding-left: 0;
+      text-shadow: none;
     }
 
     .secondary-links {
@@ -257,28 +186,26 @@
     <source src="glitch-assets/webfx2.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="scanlines" aria-hidden="true"></div>
 
   <div class="content">
     <h1 id="siteTitle">KRIS PILCHER</h1>
 
     <p class="intro">
-      <span class="roles">artist // technologist // xr creator</span>
-      experiments in altered reality, moving image, projection, memory systems, dreams, and other transmissions.
+      <span class="roles">Artist and creative technologist</span>
+
     </p>
 
     <div class="nav-block">
-      <div class="nav-label">enter</div>
       <div class="home-links">
-        <a href="/XR.html">XR //</a>
-        <a href="/images.html">IRL //</a>
-        <a href="/video.html">Video //</a>
-        <a href="/curator.html">Curatorial //</a>
-        <a href="/commercial.html">Commercial //</a>
-        <a href="/blog.html">Research Blog //</a>
-        <a href="/Dreams.html">Dreams //</a>
-        <a href="/wishes.html">Wishes //</a>
-        <a href="/About.html">About //</a>
+        <a href="/XR.html">XR</a>
+        <a href="/images.html">IRL</a>
+        <a href="/video.html">Video</a>
+        <a href="/curator.html">Curatorial</a>
+        <a href="/commercial.html">Commercial</a>
+        <a href="/blog.html">Research</a>
+        <a href="/Dreams.html">Dreams</a>
+        <a href="/wishes.html">Wishes</a>
+        <a href="/About.html">About</a>
       </div>
     </div>
 
@@ -288,33 +215,5 @@
     </div>
 
   </div>
-
-  <script>
-    (function () {
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var h1 = document.getElementById('siteTitle');
-      if (h1 && !reduced) {
-        var finalText = h1.textContent;
-        var glyphs = '█▓▒░<>/\\|=+*#@%&$?!01';
-        var frame = 0;
-        var total = 30;
-        h1.setAttribute('aria-label', finalText);
-        function scramble() {
-          frame++;
-          var settled = Math.floor((frame / total) * finalText.length);
-          var out = '';
-          for (var i = 0; i < finalText.length; i++) {
-            var ch = finalText[i];
-            out += (i < settled || ch === ' ') ? ch : glyphs[Math.floor(Math.random() * glyphs.length)];
-          }
-          h1.textContent = out;
-          if (settled < finalText.length) requestAnimationFrame(scramble);
-          else h1.textContent = finalText;
-        }
-        requestAnimationFrame(scramble);
-      }
-    })();
-  </script>
-  <script src="/site-effects.js"></script>
 </body>
 </html>
